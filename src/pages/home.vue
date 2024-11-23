@@ -589,7 +589,7 @@ export default {
         padding: 7.5px 20px;
         border: 1px solid $accent-color;
         border-radius: 5px;
-        transition: .25s;
+        transition: 0.25s;
         &:hover {
           background-color: $accent-color;
           border-color: $accent-color;
@@ -1060,8 +1060,16 @@ export default {
       .slide {
         .card-container {
           .card {
-            flex: 0 0 50%;
-            max-width: 50%;
+            flex: 0 0 49%;
+            max-width: 49%;
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(5),
+            &:nth-child(6),
+            &:nth-child(7) {
+              margin: 0 1.33% 0 0;
+            }
           }
         }
       }
@@ -1078,8 +1086,8 @@ export default {
       .slide {
         .card-container {
           .card {
-            flex: 0 0 25%;
-            max-width: 25%;
+            flex: 0 0 24%;
+            max-width: 24%;
           }
         }
       }
@@ -1113,7 +1121,8 @@ export default {
         label {
           font-family: $alternate-font;
         }
-        input, textarea {
+        input,
+        textarea {
           width: 100%;
           border: 1px solid;
           border-radius: 5px;
@@ -1133,7 +1142,7 @@ export default {
         border-radius: 5px;
         color: $accent-color;
         padding: 7.5px 20px;
-        transition: .25s;
+        transition: 0.25s;
         font-family: $alternate-font;
         &:hover {
           background-color: $accent-color;
@@ -1167,5 +1176,4 @@ export default {
     }
   }
 }
-
 </style>
