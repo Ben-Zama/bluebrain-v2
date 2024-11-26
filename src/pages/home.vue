@@ -167,6 +167,20 @@
       </div>
     </div>
 
+    <!-- pastwork modal -->
+
+    <div ref="modal" class="backdrop">
+      <div class="modal">
+        <div class="header">
+          <h2>Info</h2>
+          <i @click="closeModal">&times;</i>
+        </div>
+        <div class="text">
+          <p>{{ modalText }}</p>
+        </div>
+      </div>
+    </div>
+
     <!-- Past work -->
 
     <div class="pastwork" v-motion-slide-visible-once-bottom>
@@ -190,7 +204,7 @@
               <img :src="item.image" />
             </div>
             <div class="text">{{ item.text }}</div>
-            <button>View</button>
+            <button @click="openModal(item.modaltext)">View</button>
           </div>
         </div>
       </div>
@@ -356,6 +370,7 @@ export default {
       teamInterval: null,
       pastworkCurrentSlide: 0,
       pastworkInterval: null,
+      modalText: "",
     };
   },
   methods: {
@@ -426,6 +441,15 @@ export default {
       if (window.innerWidth >= 1200) return 4;
       if (window.innerWidth >= 768) return 2;
       return 1;
+    },
+
+    /* Modal */
+    openModal(modaltext) {
+      this.$refs.modal.classList.add("active");
+      this.modalText = modaltext;
+    },
+    closeModal() {
+      this.$refs.modal.classList.remove("active");
     },
   },
   mounted() {
@@ -962,6 +986,67 @@ export default {
             padding: 0 10%;
           }
         }
+      }
+    }
+  }
+}
+
+/* Modal */
+
+.home {
+  .backdrop {
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.25s height;
+    overflow: hidden;
+    &.active {
+      width: 100%;
+      height: 100%;
+    }
+    .modal {
+      width: 80%;
+      height: 80%;
+      background-color: $background-color;
+      border-radius: 8px;
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 50px;
+        h2 {
+          color: $primary-color;
+          font-family: $header-font;
+        }
+        i {
+          font-size: 25px;
+          color: red;
+          cursor: pointer;
+        }
+      }
+      .text {
+        margin-top: 25px;
+        padding: 0 5%;
+        overflow-y: auto;
+        font-family: $body-font;
+      }
+    }
+  }
+}
+
+@include md {
+  .home {
+    .backdrop {
+      .modal {
+        width: 50%;
+        height: 500px;
       }
     }
   }
